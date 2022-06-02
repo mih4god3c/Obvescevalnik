@@ -1,0 +1,56 @@
+@startuml ProcesniPogled
+skinparam backgroundcolor white
+skinparam defaultTextAlignment center
+skinparam usecase {
+  backgroundColor white
+  borderColor #5FB8EC
+  arrowColor black
+}
+skinparam actorBorderColor black
+skinparam actorBackgroundColor white
+skinparam Linetype polyline
+skinparam actorStyle awesome
+
+left to right direction
+
+skinparam defaultTextAlignment center
+
+actor "Zunanji akter" as Z
+actor "Uporabnik" as U
+
+
+rectangle "Sekundarna podatkovna baza" as SDB
+rectangle "Primarna podatkovna baza" as PDB
+rectangle "Programska oprema zaledja" as PZ {
+    rectangle "Modeli" as M
+    rectangle "Krmilniki" as K
+    rectangle "Strežniška programska oprema" as SOP
+    rectangle "Strežnik" as S
+}
+rectangle "Programska oprema odjemalca" as PO {
+    rectangle "Pogledi" as P
+    rectangle "Brskalnik" as B 
+    rectangle "Sistem odjemalca" as SO
+}
+
+M <-up-> K
+M <-right-> PDB
+M <-left-> SDB
+
+K <-up-> P : API
+K <--right--> Z  
+
+U <-down->PO
+
+
+rectangle "Strežniška programska oprema" as SOP
+
+
+
+
+
+
+
+
+
+@enduml

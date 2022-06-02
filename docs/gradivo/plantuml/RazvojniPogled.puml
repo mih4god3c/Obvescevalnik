@@ -1,0 +1,81 @@
+@startuml RazvojniPogled
+skinparam backgroundcolor white
+skinparam defaultTextAlignment center
+skinparam usecase {
+  backgroundColor white
+  borderColor #5FB8EC
+  arrowColor black
+}
+skinparam actorBorderColor black
+skinparam actorBackgroundColor white
+skinparam Linetype polyline
+skinparam actorStyle awesome
+
+top to bottom direction
+
+left to right direction
+
+interface "Iskanje in filtriranje \n predlogov ali novic" as Iskanje <<interface>>
+interface "Upravljanje s\n predlogom" as UpravljanjePredloga <<interface>>
+interface "Uporabniška\nseja" as UporabniskaSeja <<interface>>
+interface "Iskanje po\n podatkovni bazi" as IskanjePoBazi <<interface>>
+interface "Obvladovanje\n uporabnikov" as ObvladovanjeUporabnikov <<interface>>
+interface "Aplikaicjski vmesnik\nza statistiko" as APIstats <<interface>>
+interface "Krmilnik za akumuliranje\n statističnih podatkov" as StatsKrmilnik <<interface>>
+interface "Priprava podatkov \nlokacije in zemljevida" as Zemljevid <<interface>>
+interface "Priprava podatkov\no predlogu" as PredlogPodatki <<interface>>
+
+component "Spletna aplikacija" as SpletnaAplikacija <<subsystem>> {
+  component Iskalnik <<component>>
+  component Avtentikacija <<component>>
+  component Predlog <<component>>
+  component Uporabnik <<component>>
+  component "Uporabniški\nvmesnik" as UI <<component>>
+}
+
+database "Podatkovna baza" as PodatkovnaBaza <<subsystem>> {
+  database "Primarna \npodatkovna shramba" as PrimarnaPodatkovnaShramba <<component>> {
+    component Predlogi <<component>>
+    component Uporabniki <<component>>
+  }
+  database "Sekundarna analitična\npodatkovna shramba" as SekundarnaAnaliticnaPodatkovnaShramba <<component>> {
+    component Statistika <<component>>
+  }
+
+}
+
+component "Google Maps\nservice" as Maps
+
+Iskanje -down-> Iskalnik
+UporabniskaSeja -down-> Avtentikacija
+UpravljanjePredloga --down-> Predlog
+
+Iskalnik -down-> IskanjePoBazi
+Avtentikacija -down-> ObvladovanjeUporabnikov
+
+Maps --> Zemljevid
+Zemljevid --> Predlog
+
+Avtentikacija -right-> Uporabnik
+Iskalnik -left-> UI
+Predlog -left-> UI
+Uporabnik -left-> UI
+
+IskanjePoBazi --> Predlogi
+ObvladovanjeUporabnikov --> Uporabniki
+Predlog --> PredlogPodatki
+PredlogPodatki --> Predlogi
+
+Predlogi --> StatsKrmilnik
+Uporabniki --> StatsKrmilnik
+
+StatsKrmilnik --> Statistika
+
+Statistika --> APIstats
+
+@enduml
+
+
+
+
+

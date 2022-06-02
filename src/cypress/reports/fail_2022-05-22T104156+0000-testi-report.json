@@ -1,0 +1,969 @@
+{
+  "stats": {
+    "suites": 23,
+    "tests": 23,
+    "passes": 21,
+    "pending": 0,
+    "failures": 2,
+    "start": "2022-05-22T10:38:45.509Z",
+    "end": "2022-05-22T10:41:56.866Z",
+    "duration": 191357,
+    "testsRegistered": 23,
+    "passPercent": 91.30434782608695,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "d45a2988-dab3-48f4-8b19-77f0354695eb",
+      "title": "",
+      "fullFile": "cypress/integration/testi.js",
+      "file": "cypress/integration/testi.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "1ee21a1c-1282-48cc-9859-bb3abfca58fa",
+          "title": "Dodajanje predlogov za testiranje vseckanja",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Open obvescevalnik",
+              "fullTitle": "Dodajanje predlogov za testiranje vseckanja Open obvescevalnik",
+              "timedOut": null,
+              "duration": 19695,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.visit(\"http://localhost:3000\");\ncy.contains(\"Prijava\").click();\ncy.url().should(\"contain\", \"/prijava\");\ncy.get(\"input[id=email_prijavi_se]\").click().type(\"johndoe@email.com\");\ncy.get(\"input[id=geslo_prijavi_se]\").click().type(\"password\");\ncy.get(\"button[id=gumb_prijavi_se]\").click();\ncy.wait(3000);\ncy.url().should(\"contain\", \"/predlogi\");\ncy.contains(\"Dodaj nov predlog\").click();\ncy.url().should(\"contain\", \"/nov\");\nlet stevka = Date.now();\ncy.get(\"input[id=naslov]\").type(\"Testni predlog za vseckanje\");\ncy.get(\"textarea[id=podrobnosti]\").type(\"Testne podrobnosti\" + stevka);\ncy.get(\"input[id=address]\").type(\"Ljubljana\");\ncy.contains(\"Išči\").click();\ncy.contains(\"Nadaljuj na pregled\").click();\ncy.contains(\"Objavi\").click();\ncy.url().should(\"contain\", \"/predlog\");\ncy.contains(\"Testni predlog za vseckanje\");\ncy.contains(\"Ljubljana\");",
+              "err": {},
+              "uuid": "909a05f3-c55c-4379-8a51-d471c7812b8c",
+              "parentUUID": "1ee21a1c-1282-48cc-9859-bb3abfca58fa",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "909a05f3-c55c-4379-8a51-d471c7812b8c"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 19695,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        },
+        {
+          "uuid": "f2be2122-a051-4524-8d7f-4588baef18b8",
+          "title": "Dodajanje predlogov za testiranje komentiranja",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Open obvescevalnik",
+              "fullTitle": "Dodajanje predlogov za testiranje komentiranja Open obvescevalnik",
+              "timedOut": null,
+              "duration": 10309,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.visit(\"http://localhost:3000\");\ncy.contains(\"Prijava\").click();\ncy.url().should(\"contain\", \"/prijava\");\ncy.get(\"input[id=email_prijavi_se]\").click().type(\"johndoe@email.com\");\ncy.get(\"input[id=geslo_prijavi_se]\").click().type(\"password\");\ncy.get(\"button[id=gumb_prijavi_se]\").click();\ncy.url().should(\"contain\", \"/predlogi\");\ncy.contains(\"Dodaj nov predlog\").click();\ncy.url().should(\"contain\", \"/nov\");\nlet stevka = Date.now();\ncy.get(\"input[id=naslov]\").type(\"Testni predlog za komentiranje\");\ncy.get(\"textarea[id=podrobnosti]\").type(\"Testne podrobnosti\" + stevka);\ncy.get(\"input[id=address]\").type(\"Ljubljana\");\ncy.contains(\"Išči\").click();\ncy.contains(\"Nadaljuj na pregled\").click();\ncy.contains(\"Objavi\").click();\ncy.url().should(\"contain\", \"/predlog\");\ncy.contains(\"Testni predlog za komentiranje\");\ncy.contains(\"Ljubljana\");",
+              "err": {},
+              "uuid": "4b937fcf-e518-4dd3-9e8b-9bbcd309a0c4",
+              "parentUUID": "f2be2122-a051-4524-8d7f-4588baef18b8",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "4b937fcf-e518-4dd3-9e8b-9bbcd309a0c4"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 10309,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        },
+        {
+          "uuid": "217d14b4-2246-40d9-b473-dbfdc7409431",
+          "title": "Dodajanje predlogov za testiranje arhiviranja",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Open obvescevalnik",
+              "fullTitle": "Dodajanje predlogov za testiranje arhiviranja Open obvescevalnik",
+              "timedOut": null,
+              "duration": 9080,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.visit(\"http://localhost:3000\");\ncy.contains(\"Prijava\").click();\ncy.url().should(\"contain\", \"/prijava\");\ncy.get(\"input[id=email_prijavi_se]\").click().type(\"johndoe@email.com\");\ncy.get(\"input[id=geslo_prijavi_se]\").click().type(\"password\");\ncy.get(\"button[id=gumb_prijavi_se]\").click();\ncy.url().should(\"contain\", \"/predlogi\");\ncy.contains(\"Dodaj nov predlog\").click();\ncy.url().should(\"contain\", \"/nov\");\nlet stevka = Date.now();\ncy.get(\"input[id=naslov]\").type(\"Testni predlog za arhiviranje\");\ncy.get(\"textarea[id=podrobnosti]\").type(\"Testne podrobnosti\" + stevka);\ncy.get(\"input[id=address]\").type(\"Ljubljana\");\ncy.contains(\"Išči\").click();\ncy.contains(\"Nadaljuj na pregled\").click();\ncy.contains(\"Objavi\").click();\ncy.url().should(\"contain\", \"/predlog\");\ncy.contains(\"Testni predlog za arhiviranje\");\ncy.contains(\"Ljubljana\");",
+              "err": {},
+              "uuid": "d964fc17-2fab-4ab3-bd9e-79cc53a315cc",
+              "parentUUID": "217d14b4-2246-40d9-b473-dbfdc7409431",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "d964fc17-2fab-4ab3-bd9e-79cc53a315cc"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 9080,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        },
+        {
+          "uuid": "cb0a2e80-3ca0-490d-bbd2-472a43d127f4",
+          "title": "Prijava izjemni tok1",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Open obvescevalnik",
+              "fullTitle": "Prijava izjemni tok1 Open obvescevalnik",
+              "timedOut": null,
+              "duration": 3048,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.visit(\"http://localhost:3000\");\ncy.contains(\"Prijava\").click();\ncy.url().should(\"contain\", \"/prijava\");\ncy.get(\"input[id=email_prijavi_se]\").click().type(\"fake.mail@gmail.com\");\ncy.get(\"input[id=geslo_prijavi_se]\").click().type(\"fakepassword\");\ncy.get(\"button[id=gumb_prijavi_se]\").click();\ncy.contains(\"Uporabnik s tem e-naslovom ne obstaja.\");",
+              "err": {},
+              "uuid": "28efb6fe-33ca-45ed-9838-500dc63c8a1b",
+              "parentUUID": "cb0a2e80-3ca0-490d-bbd2-472a43d127f4",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "28efb6fe-33ca-45ed-9838-500dc63c8a1b"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 3048,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        },
+        {
+          "uuid": "1e5b84ec-4da0-4e17-b1c0-aa5e68f8e0a1",
+          "title": "Prijava izjemni tok2",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Open obvescevalnik",
+              "fullTitle": "Prijava izjemni tok2 Open obvescevalnik",
+              "timedOut": null,
+              "duration": 2214,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.visit(\"http://localhost:3000\");\ncy.contains(\"Prijava\").click();\ncy.url().should(\"contain\", \"/prijava\");\ncy.get(\"input[id=email_prijavi_se]\").click().type(\"johndoe@email.com\");\ncy.get(\"input[id=geslo_prijavi_se]\").click().type(\"fakepassword\");\ncy.get(\"button[id=gumb_prijavi_se]\").click();\ncy.contains(\"Napačno geslo.\");",
+              "err": {},
+              "uuid": "49d7cf93-a127-4c19-8ed9-7f855df81fc3",
+              "parentUUID": "1e5b84ec-4da0-4e17-b1c0-aa5e68f8e0a1",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "49d7cf93-a127-4c19-8ed9-7f855df81fc3"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 2214,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        },
+        {
+          "uuid": "818e18a8-110d-4e18-bdd2-4b7c00394308",
+          "title": "Prijava osnovni tok",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Open obvescevalnik",
+              "fullTitle": "Prijava osnovni tok Open obvescevalnik",
+              "timedOut": null,
+              "duration": 3998,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.visit(\"http://localhost:3000\");\ncy.contains(\"Prijava\").click();\ncy.url().should(\"contain\", \"/prijava\");\ncy.get(\"input[id=email_prijavi_se]\").click().type(\"johndoe@email.com\");\ncy.get(\"input[id=geslo_prijavi_se]\").click().type(\"password\");\ncy.get(\"button[id=gumb_prijavi_se]\").click();\ncy.url().should(\"contain\", \"/predlogi\");",
+              "err": {},
+              "uuid": "9eee680b-351a-4dfd-aeca-7428b1149204",
+              "parentUUID": "818e18a8-110d-4e18-bdd2-4b7c00394308",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "9eee680b-351a-4dfd-aeca-7428b1149204"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 3998,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        },
+        {
+          "uuid": "bed76e19-d2e6-4013-9b4b-f9e422bb979d",
+          "title": "Registracija osnovni tok",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Open obvescevalnik",
+              "fullTitle": "Registracija osnovni tok Open obvescevalnik",
+              "timedOut": null,
+              "duration": 6263,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.visit(\"http://localhost:3000\");\ncy.contains(\"Registracija\").click();\ncy.url().should(\"contain\", \"/prijava?a=r\");\nlet stevka = Date.now();\ncy.get(\"input[id=uporabnisko_ime_registracija]\").click().type(\"temp\" + stevka);\ncy.get(\"select\").select(\"Zreče\");\ncy.get(\"input[id=email_registracija]\").click().type(stevka + \"@gmail.com\");\ncy.get(\"input[id=geslo_registracija]\").click().type(\"mockpassword\");\ncy.get(\"button[id=gumb_pridruzi_se]\").click();\ncy.url().should(\"contain\", \"/predlogi\");",
+              "err": {},
+              "uuid": "2b16d5a4-416d-42f8-b7e2-83f86412b90e",
+              "parentUUID": "bed76e19-d2e6-4013-9b4b-f9e422bb979d",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "2b16d5a4-416d-42f8-b7e2-83f86412b90e"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 6263,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        },
+        {
+          "uuid": "485d29b0-16cc-4b4a-980a-b73011242c54",
+          "title": "Registracija izjemni tok1",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Open obvescevalnik",
+              "fullTitle": "Registracija izjemni tok1 Open obvescevalnik",
+              "timedOut": null,
+              "duration": 3469,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.visit(\"http://localhost:3000\");\ncy.contains(\"Registracija\").click();\ncy.url().should(\"contain\", \"/prijava?a=r\");\nlet stevka = Date.now();\ncy.get(\"input[id=uporabnisko_ime_registracija]\").click().type(\"temp\" + stevka);\ncy.get(\"select\").select(\"Zreče\");\ncy.get(\"input[id=email_registracija]\").click().type(\"johndoe@email.com\");\ncy.get(\"input[id=geslo_registracija]\").click().type(\"mockpassword\");\ncy.get(\"button[id=gumb_pridruzi_se]\").click();\ncy.contains(\"Račun s tem e-naslovom že obstaja.\");",
+              "err": {},
+              "uuid": "65e9315a-ee08-4f81-b486-a0cdebb6f56e",
+              "parentUUID": "485d29b0-16cc-4b4a-980a-b73011242c54",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "65e9315a-ee08-4f81-b486-a0cdebb6f56e"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 3469,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        },
+        {
+          "uuid": "a3926765-e784-4c68-b686-0b67ac119234",
+          "title": "Registracija izjemni tok2",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Open obvescevalnik",
+              "fullTitle": "Registracija izjemni tok2 Open obvescevalnik",
+              "timedOut": null,
+              "duration": 2741,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.visit(\"http://localhost:3000\");\ncy.contains(\"Registracija\").click();\ncy.url().should(\"contain\", \"/prijava?a=r\");\nlet stevka = Date.now();\ncy.get(\"input[id=uporabnisko_ime_registracija]\").click().type(\"temp\" + stevka);\ncy.get(\"select\").select(\"Zreče\");\ncy.get(\"input[id=email_registracija]\").click().type(\"temp\" + stevka + \"@email.com\");\ncy.get(\"input[id=geslo_registracija]\").click().type(\"a\");\ncy.get(\"button[id=gumb_pridruzi_se]\").click();\ncy.contains(\"Geslo je prekratko.\");",
+              "err": {},
+              "uuid": "bd67cbec-4caa-40bf-b070-2923a01c2bf1",
+              "parentUUID": "a3926765-e784-4c68-b686-0b67ac119234",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "bd67cbec-4caa-40bf-b070-2923a01c2bf1"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 2741,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        },
+        {
+          "uuid": "8d6255cb-2e0f-46ab-9a1c-d6221d3f4471",
+          "title": "Odjava osnovni tok",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Open obvescevalnik",
+              "fullTitle": "Odjava osnovni tok Open obvescevalnik",
+              "timedOut": null,
+              "duration": 4342,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.visit(\"http://localhost:3000\");\ncy.contains(\"Prijava\").click();\ncy.url().should(\"contain\", \"/prijava\");\ncy.get(\"input[id=email_prijavi_se]\").click().type(\"johndoe@email.com\");\ncy.get(\"input[id=geslo_prijavi_se]\").click().type(\"password\");\ncy.get(\"button[id=gumb_prijavi_se]\").click();\ncy.url().should(\"contain\", \"/predlogi\");\ncy.contains(\"Odjava\").click();\ncy.contains(\"Prijava\");",
+              "err": {},
+              "uuid": "89cc3bf6-01c8-44f4-a566-aed88cc6c2b9",
+              "parentUUID": "8d6255cb-2e0f-46ab-9a1c-d6221d3f4471",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "89cc3bf6-01c8-44f4-a566-aed88cc6c2b9"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 4342,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        },
+        {
+          "uuid": "fb5d0eee-233e-4b0a-ac50-e5da6f708c11",
+          "title": "Pregled arhiviranih predlogov osnovni tok",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Open obvescevalnik",
+              "fullTitle": "Pregled arhiviranih predlogov osnovni tok Open obvescevalnik",
+              "timedOut": null,
+              "duration": 7645,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.visit(\"http://localhost:3000\");\ncy.contains(\"Prijava\").click();\ncy.url().should(\"contain\", \"/prijava\");\ncy.get(\"input[id=email_prijavi_se]\").click().type(\"johndoe@email.com\");\ncy.get(\"input[id=geslo_prijavi_se]\").click().type(\"password\");\ncy.get(\"button[id=gumb_prijavi_se]\").click();\ncy.url().should(\"contain\", \"/predlogi\");\ncy.contains(\"Arhiv\").click();\ncy.url().should(\"contain\", \"/arhiv\");",
+              "err": {},
+              "uuid": "b75a876e-4f62-41c7-b5e3-1647e789be11",
+              "parentUUID": "fb5d0eee-233e-4b0a-ac50-e5da6f708c11",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "b75a876e-4f62-41c7-b5e3-1647e789be11"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 7645,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        },
+        {
+          "uuid": "431fe9ed-9c04-4459-abef-33783a621118",
+          "title": "Vseckanje osnovni tok",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Open obvescevalnik",
+              "fullTitle": "Vseckanje osnovni tok Open obvescevalnik",
+              "timedOut": null,
+              "duration": 8519,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.visit(\"http://localhost:3000\");\ncy.contains(\"Prijava\").click();\ncy.url().should(\"contain\", \"/prijava\");\ncy.get(\"input[id=email_prijavi_se]\").click().type(\"johndoe@email.com\");\ncy.get(\"input[id=geslo_prijavi_se]\").click().type(\"password\");\ncy.get(\"button[id=gumb_prijavi_se]\").click();\ncy.url().should(\"contain\", \"/predlogi\");\ncy.contains(\"Testni predlog za vseckanje\").click();\ncy.url().should(\"contain\", \"/predlog\");\ncy.get(\"button[id=gumb_vsecek]\").click(); //cy.get('button[id=gumb_nevsecek]').click()",
+              "err": {},
+              "uuid": "f6dcf41f-0014-4c1c-a4c4-70edc77db886",
+              "parentUUID": "431fe9ed-9c04-4459-abef-33783a621118",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "f6dcf41f-0014-4c1c-a4c4-70edc77db886"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 8519,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        },
+        {
+          "uuid": "92c309cc-e047-4f81-a02f-330a751a01c6",
+          "title": "Nevseckanje osnovni tok",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Open obvescevalnik",
+              "fullTitle": "Nevseckanje osnovni tok Open obvescevalnik",
+              "timedOut": null,
+              "duration": 7242,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.visit(\"http://localhost:3000\");\ncy.contains(\"Prijava\").click();\ncy.url().should(\"contain\", \"/prijava\");\ncy.get(\"input[id=email_prijavi_se]\").click().type(\"johndoe@email.com\");\ncy.get(\"input[id=geslo_prijavi_se]\").click().type(\"password\");\ncy.get(\"button[id=gumb_prijavi_se]\").click();\ncy.url().should(\"contain\", \"/predlogi\");\ncy.contains(\"Testni predlog za vseckanje\").click();\ncy.url().should(\"contain\", \"/predlog\"); //cy.get('button[id=gumb_vsecek]').click()\ncy.get(\"button[id=gumb_nevsecek]\").click();",
+              "err": {},
+              "uuid": "847594ca-39b3-4a6a-b241-1d66f8d4637f",
+              "parentUUID": "92c309cc-e047-4f81-a02f-330a751a01c6",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "847594ca-39b3-4a6a-b241-1d66f8d4637f"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 7242,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        },
+        {
+          "uuid": "c95f1d83-7c37-40e8-ac41-5fb86a572ee2",
+          "title": "Vseckanje alternativni tok",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Open obvescevalnik",
+              "fullTitle": "Vseckanje alternativni tok Open obvescevalnik",
+              "timedOut": null,
+              "duration": 4728,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.visit(\"http://localhost:3000\");\ncy.contains(\"Prijava\").click();\ncy.url().should(\"contain\", \"/prijava\");\ncy.get(\"input[id=email_prijavi_se]\").click().type(\"johndoe@email.com\");\ncy.get(\"input[id=geslo_prijavi_se]\").click().type(\"password\");\ncy.get(\"button[id=gumb_prijavi_se]\").click();\ncy.url().should(\"contain\", \"/predlogi\");\ncy.get(\"button[id=gumb_vsecek_0]\").click();",
+              "err": {},
+              "uuid": "dc2a29fb-4cf7-4db9-8583-a546114979d6",
+              "parentUUID": "c95f1d83-7c37-40e8-ac41-5fb86a572ee2",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "dc2a29fb-4cf7-4db9-8583-a546114979d6"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 4728,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        },
+        {
+          "uuid": "4d6765f9-6766-45f0-becf-e86568f72515",
+          "title": "Nevseckanje alternativni tok",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Open obvescevalnik",
+              "fullTitle": "Nevseckanje alternativni tok Open obvescevalnik",
+              "timedOut": null,
+              "duration": 4221,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.visit(\"http://localhost:3000\");\ncy.contains(\"Prijava\").click();\ncy.url().should(\"contain\", \"/prijava\");\ncy.get(\"input[id=email_prijavi_se]\").click().type(\"johndoe@email.com\");\ncy.get(\"input[id=geslo_prijavi_se]\").click().type(\"password\");\ncy.get(\"button[id=gumb_prijavi_se]\").click();\ncy.url().should(\"contain\", \"/predlogi\");\ncy.get(\"button[id=gumb_nevsecek_0]\").click();",
+              "err": {},
+              "uuid": "42ba610d-c1c0-4c06-a6dd-c8040fd6a423",
+              "parentUUID": "4d6765f9-6766-45f0-becf-e86568f72515",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "42ba610d-c1c0-4c06-a6dd-c8040fd6a423"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 4221,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        },
+        {
+          "uuid": "e3720471-81b6-4231-b9a2-6174670de4ce",
+          "title": "Dodajanje predloga osnovni tok",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Open obvescevalnik",
+              "fullTitle": "Dodajanje predloga osnovni tok Open obvescevalnik",
+              "timedOut": null,
+              "duration": 10231,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.visit(\"http://localhost:3000\");\ncy.contains(\"Prijava\").click();\ncy.url().should(\"contain\", \"/prijava\");\ncy.get(\"input[id=email_prijavi_se]\").click().type(\"johndoe@email.com\");\ncy.get(\"input[id=geslo_prijavi_se]\").click().type(\"password\");\ncy.get(\"button[id=gumb_prijavi_se]\").click();\ncy.url().should(\"contain\", \"/predlogi\");\ncy.contains(\"Dodaj nov predlog\").click();\ncy.url().should(\"contain\", \"/nov\");\nlet stevka = Date.now();\ncy.get(\"input[id=naslov]\").type(\"To je testni predlog za dodajanje\");\ncy.get(\"textarea[id=podrobnosti]\").type(\"Testne podrobnosti\" + stevka);\ncy.get(\"input[id=address]\").type(\"Zreče\");\ncy.contains(\"Išči\").click();\ncy.contains(\"Nadaljuj na pregled\").click();\ncy.contains(\"Objavi\").click();\ncy.url().should(\"contain\", \"/predlog\");\ncy.contains(\"To je testni predlog za dodajanje\");\ncy.contains(\"Zreče\");",
+              "err": {},
+              "uuid": "6cecefca-9eca-43bf-9dd9-b1ef7e4fe95e",
+              "parentUUID": "e3720471-81b6-4231-b9a2-6174670de4ce",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "6cecefca-9eca-43bf-9dd9-b1ef7e4fe95e"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 10231,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        },
+        {
+          "uuid": "849af007-dc73-4225-a159-14d37c072176",
+          "title": "Arhiviranje predloga osnovni tok",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Open obvescevalnik",
+              "fullTitle": "Arhiviranje predloga osnovni tok Open obvescevalnik",
+              "timedOut": null,
+              "duration": 9265,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.visit(\"http://localhost:3000\");\ncy.contains(\"Prijava\").click();\ncy.url().should(\"contain\", \"/prijava\");\ncy.get(\"input[id=email_prijavi_se]\").click().type(\"admin@obvescevalnik.si\");\ncy.get(\"input[id=geslo_prijavi_se]\").click().type(\"password\");\ncy.get(\"button[id=gumb_prijavi_se]\").click();\ncy.url().should(\"contain\", \"/predlogi\");\ncy.contains(\"Testni predlog za arhiviranje\").click();\ncy.url().should(\"contain\", \"/predlog\");\ncy.get(\"div[id=pikice]\").click();\ncy.contains(\"Arhiviraj predlog\").click();\ncy.url().should(\"contain\", \"/arhiv\");\ncy.contains(\"Testni predlog za arhiviranje\");",
+              "err": {},
+              "uuid": "75214ef1-577e-4a60-8605-4f9807f97714",
+              "parentUUID": "849af007-dc73-4225-a159-14d37c072176",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "75214ef1-577e-4a60-8605-4f9807f97714"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 9265,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        },
+        {
+          "uuid": "fa9b336e-bc9a-46f4-bbde-5eec46ebe080",
+          "title": "Ocenjevanje arhiviranega predloga osnovni tok",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Open obvescevalnik",
+              "fullTitle": "Ocenjevanje arhiviranega predloga osnovni tok Open obvescevalnik",
+              "timedOut": null,
+              "duration": 13588,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.visit(\"http://localhost:3000\");\ncy.contains(\"Prijava\").click();\ncy.url().should(\"contain\", \"/prijava\");\ncy.get(\"input[id=email_prijavi_se]\").click().type(\"johndoe@email.com\");\ncy.get(\"input[id=geslo_prijavi_se]\").click().type(\"password\");\ncy.get(\"button[id=gumb_prijavi_se]\").click();\ncy.url().should(\"contain\", \"/predlogi\");\ncy.contains(\"Arhiv\").click();\ncy.url().should(\"contain\", \"/arhiv\");\ncy.contains(\"Testni predlog za arhiviranje\").click();\ncy.url().should(\"contain\", \"/arhiv\");\ncy.get(\"li[id=star5]\").click();\ncy.wait(5000);",
+              "err": {},
+              "uuid": "8725ab5c-c76f-4edc-98ee-6d39bc5f6a9b",
+              "parentUUID": "fa9b336e-bc9a-46f4-bbde-5eec46ebe080",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "8725ab5c-c76f-4edc-98ee-6d39bc5f6a9b"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 13588,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        },
+        {
+          "uuid": "399a1769-d92c-4534-ba13-484cd533286c",
+          "title": "Komentiranje  predloga osnovni tok",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Open obvescevalnik",
+              "fullTitle": "Komentiranje  predloga osnovni tok Open obvescevalnik",
+              "timedOut": null,
+              "duration": 6930,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.visit(\"http://localhost:3000\");\ncy.contains(\"Prijava\").click();\ncy.url().should(\"contain\", \"/prijava\");\ncy.get(\"input[id=email_prijavi_se]\").click().type(\"johndoe@email.com\");\ncy.get(\"input[id=geslo_prijavi_se]\").click().type(\"password\");\ncy.get(\"button[id=gumb_prijavi_se]\").click();\ncy.url().should(\"contain\", \"/predlogi\");\ncy.contains(\"Testni predlog za komentiranje\").click();\nlet stevka = Date.now();\ncy.get(\"textarea[id=komentiraj]\").type(\"To je testni komentar\" + stevka);\ncy.contains(\"Dodaj komentar\").click();\ncy.contains(\"To je testni komentar\" + stevka);",
+              "err": {},
+              "uuid": "fba9af3b-9ae7-416c-861e-a261f566695a",
+              "parentUUID": "399a1769-d92c-4534-ba13-484cd533286c",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "fba9af3b-9ae7-416c-861e-a261f566695a"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 6930,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        },
+        {
+          "uuid": "06f73ca8-a284-4674-9592-26b8e9ad2750",
+          "title": "Brisanje predloga osnovni tok",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Open obvescevalnik",
+              "fullTitle": "Brisanje predloga osnovni tok Open obvescevalnik",
+              "timedOut": null,
+              "duration": 10157,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.visit(\"http://localhost:3000\");\ncy.contains(\"Prijava\").click();\ncy.url().should(\"contain\", \"/prijava\");\ncy.get(\"input[id=email_prijavi_se]\").click().type(\"johndoe@email.com\");\ncy.get(\"input[id=geslo_prijavi_se]\").click().type(\"password\");\ncy.get(\"button[id=gumb_prijavi_se]\").click();\ncy.url().should(\"contain\", \"/predlogi\");\ncy.contains(\"Dodaj nov predlog\").click();\ncy.url().should(\"contain\", \"/nov\");\nlet stevka = Date.now();\ncy.get(\"input[id=naslov]\").type(\"Predlog za brisanje\");\ncy.get(\"textarea[id=podrobnosti]\").type(\"To je predlog za brisanje\" + stevka);\ncy.get(\"input[id=address]\").type(\"Ljubljana\");\ncy.contains(\"Išči\").click();\ncy.contains(\"Nadaljuj na pregled\").click();\ncy.contains(\"Objavi\").click();\ncy.url().should(\"contain\", \"/predlog\");\ncy.contains(\"To je predlog za brisanje\" + stevka);\ncy.contains(\"Ljubljana\");\ncy.get(\"div[id=pikice]\").click();\ncy.contains(\"Izbriši predlog\").click();\ncy.url().should(\"contain\", \"/predlogi\");\ncy.contains(\"Predlog za brisanje\" + stevka).should(\"not.exist\");",
+              "err": {},
+              "uuid": "13842775-86ef-4361-b745-b309ead45781",
+              "parentUUID": "06f73ca8-a284-4674-9592-26b8e9ad2750",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "13842775-86ef-4361-b745-b309ead45781"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 10157,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        },
+        {
+          "uuid": "ac5c6fd6-45f0-46e6-b307-e9921ce9917f",
+          "title": "Brisanje predloga za vseckanje",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Open obvescevalnik",
+              "fullTitle": "Brisanje predloga za vseckanje Open obvescevalnik",
+              "timedOut": null,
+              "duration": 6817,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.visit(\"http://localhost:3000\");\ncy.contains(\"Prijava\").click();\ncy.url().should(\"contain\", \"/prijava\");\ncy.get(\"input[id=email_prijavi_se]\").click().type(\"johndoe@email.com\");\ncy.get(\"input[id=geslo_prijavi_se]\").click().type(\"password\");\ncy.get(\"button[id=gumb_prijavi_se]\").click();\ncy.url().should(\"contain\", \"/predlogi\");\ncy.contains(\"Testni predlog za vseckanje\").click();\ncy.get(\"div[id=pikice]\").click();\ncy.contains(\"Izbriši predlog\").click();\ncy.url().should(\"contain\", \"/predlogi\");\ncy.contains(\"Testni predlog za vseckanje\").should(\"not.exist\");",
+              "err": {},
+              "uuid": "b67b0dc7-6d02-4e51-bfd4-a1d8f7802993",
+              "parentUUID": "ac5c6fd6-45f0-46e6-b307-e9921ce9917f",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "b67b0dc7-6d02-4e51-bfd4-a1d8f7802993"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 6817,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        },
+        {
+          "uuid": "fd54118e-fc48-4530-8931-3d3468496b48",
+          "title": "Brisanje predloga za komentiranje",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Open obvescevalnik",
+              "fullTitle": "Brisanje predloga za komentiranje Open obvescevalnik",
+              "timedOut": null,
+              "duration": 16783,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": null,
+              "code": "cy.visit(\"http://localhost:3000\");\ncy.contains(\"Prijava\").click();\ncy.url().should(\"contain\", \"/prijava\");\ncy.get(\"input[id=email_prijavi_se]\").click().type(\"johndoe@email.com\");\ncy.get(\"input[id=geslo_prijavi_se]\").click().type(\"password\");\ncy.get(\"button[id=gumb_prijavi_se]\").click();\ncy.url().should(\"contain\", \"/predlogi\");\ncy.contains(\"Testni predlog za komentiranje\").click();\ncy.get(\"div[id=pikice]\").click();\ncy.contains(\"Izbriši predlog\").click();\ncy.url().should(\"contain\", \"/predlogi\");\ncy.contains(\"Testni predlog za komentiranje\").should(\"not.exist\");",
+              "err": {
+                "message": "AssertionError: Timed out retrying after 10000ms: Expected not to find content: 'Testni predlog za komentiranje' but continuously found it.",
+                "estack": "AssertionError: Timed out retrying after 10000ms: Expected not to find content: 'Testni predlog za komentiranje' but continuously found it.\n    at Context.eval (http://localhost:3000/__cypress/tests?p=cypress/integration/testi.js:453:51)",
+                "diff": null
+              },
+              "uuid": "f003784b-f072-4646-b469-737c9ebfe9a7",
+              "parentUUID": "fd54118e-fc48-4530-8931-3d3468496b48",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [],
+          "failures": [
+            "f003784b-f072-4646-b469-737c9ebfe9a7"
+          ],
+          "pending": [],
+          "skipped": [],
+          "duration": 16783,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        },
+        {
+          "uuid": "eeb108c2-9c85-4cab-9456-fd97880886e3",
+          "title": "Brisanje predloga za dodajanje",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Open obvescevalnik",
+              "fullTitle": "Brisanje predloga za dodajanje Open obvescevalnik",
+              "timedOut": null,
+              "duration": 17820,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": null,
+              "code": "cy.visit(\"http://localhost:3000\");\ncy.contains(\"Prijava\").click();\ncy.url().should(\"contain\", \"/prijava\");\ncy.get(\"input[id=email_prijavi_se]\").click().type(\"johndoe@email.com\");\ncy.get(\"input[id=geslo_prijavi_se]\").click().type(\"password\");\ncy.get(\"button[id=gumb_prijavi_se]\").click();\ncy.url().should(\"contain\", \"/predlogi\");\ncy.contains(\"To je testni predlog za dodajanje\").click();\ncy.get(\"div[id=pikice]\").click();\ncy.contains(\"Izbriši predlog\").click();\ncy.url().should(\"contain\", \"/predlogi\");\ncy.contains(\"To je testni predlog za dodajanje\").should(\"not.exist\");",
+              "err": {
+                "message": "AssertionError: Timed out retrying after 10000ms: Expected not to find content: 'To je testni predlog za dodajanje' but continuously found it.",
+                "estack": "AssertionError: Timed out retrying after 10000ms: Expected not to find content: 'To je testni predlog za dodajanje' but continuously found it.\n    at Context.eval (http://localhost:3000/__cypress/tests?p=cypress/integration/testi.js:469:54)",
+                "diff": null
+              },
+              "uuid": "180ca1b0-d9af-4f3d-ad4a-d7c8d9a53dd6",
+              "parentUUID": "eeb108c2-9c85-4cab-9456-fd97880886e3",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [],
+          "failures": [
+            "180ca1b0-d9af-4f3d-ad4a-d7c8d9a53dd6"
+          ],
+          "pending": [],
+          "skipped": [],
+          "duration": 17820,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "[status]_[datetime]-[name]-report",
+        "saveHtml": true,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.3"
+    },
+    "marge": {
+      "options": {
+        "reportFilename": "[status]_[datetime]-[name]-report",
+        "reportDir": "./cypress/reports"
+      },
+      "version": "6.2.0"
+    }
+  }
+}

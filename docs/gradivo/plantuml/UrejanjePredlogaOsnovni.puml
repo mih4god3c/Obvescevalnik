@@ -1,0 +1,110 @@
+@startuml UrejanjePredlogaOsnovni
+
+hide footbox
+
+skinparam backgroundcolor white
+skinparam defaultTextAlignment center
+skinparam actorBorderColor black
+skinparam actorBackgroundColor white
+skinparam arrowColor black  
+skinparam sequenceLifeLineBorderColor #5FB8EC
+skinparam sequenceParticipantBorderColor #5FB8EC
+skinparam sequenceParticipantBackgroundColor white
+
+title "Urejanje predloga - osnovni tok"
+
+actor "Moderator" AS U <<actor>>
+
+participant "Predlogi" as Predlogi <<view>>
+participant "Dodajanje predloga" as Dodajanje <<view>>
+participant "Predlog" as Predlog <<view>>
+participant "Krmilnik upravljanja predlogov" as Krmilnik <<controller>>
+participant "Krmilnik lokacije" as KrmilnikL <<controller>>
+participant "Predlog" as  PredlogModel <<model>>
+participant "Uporabnik" as Uporabnik<<model>>
+
+U -> Predlogi: vrniPredlog()
+activate Predlogi
+
+Predlogi -> Krmilnik: vrniPredlog()
+activate Krmilnik
+
+Krmilnik -> PredlogModel: vrniPredlog()
+activate PredlogModel
+
+PredlogModel -[dotted]> Krmilnik: predlog
+deactivate PredlogModel
+
+
+Krmilnik -[dotted]> Predlogi: predlog
+deactivate Krmilnik
+
+Predlogi -> Predlog: prikaziPredlog()
+activate Predlog
+deactivate Predlogi
+
+U -> Predlog: urediPredlog()
+Predlog -> Krmilnik: prikaziStranZaUrejanjePredloga()
+deactivate Predlog
+
+activate Krmilnik
+
+
+
+Krmilnik -[dotted]> Dodajanje: stranZaUrejanjePredloga
+deactivate Krmilnik
+activate Dodajanje
+deactivate Predlogi
+
+
+
+loop urejanje predloga
+  U -> Dodajanje: izpolniPolja()
+  U -> Dodajanje: dodajSlike()
+  U -> Dodajanje: izberiLokacijoNaZemljevidu()
+
+  Dodajanje -> KrmilnikL: pridobiLokacijo()
+  activate KrmilnikL
+  KrmilnikL -[dotted]> Dodajanje: lokacija
+  deactivate KrmilnikL
+
+  U -> Dodajanje: nadaljuj()
+
+  Dodajanje -> Krmilnik: preveriVeljavnostVnosa()
+  activate Krmilnik
+
+  Krmilnik -[dotted]> Dodajanje: podatkiSoVeljavni
+  deactivate Krmilnik
+
+  Dodajanje -> Krmilnik: prikaziPredogledPredloga()
+  activate Krmilnik
+  deactivate Dodajanje
+
+  Krmilnik -[dotted]> Predlog: predogledPredloga
+  activate Predlog
+  U -> Predlog: uredi()
+end
+
+U -> Predlog: objavi()
+Predlog -> Krmilnik: posodobiPredlog()
+Krmilnik -> PredlogModel: posodobiPredlog()
+activate PredlogModel
+PredlogModel -[dotted]> Krmilnik: predlogPosodobljen
+deactivate PredlogModel
+Krmilnik -[dotted]> Predlog: predlogPosodobljen
+Predlog -> Predlog: prikaziSporocilo()
+
+Predlog -> Krmilnik: vrniPredloge()
+Krmilnik -> PredlogModel: vrniPredloge()
+activate PredlogModel
+PredlogModel -[dotted]> Krmilnik: seznamPredlogov
+deactivate PredlogModel
+Krmilnik -[dotted]> Predlog: seznamPredlogov
+Predlog -> Predlogi: prikaziStranSPredlogi()
+deactivate Predlog
+deactivate Krmilnik
+
+activate Predlogi
+
+
+@enduml

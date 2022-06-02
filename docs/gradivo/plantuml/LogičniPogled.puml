@@ -1,0 +1,73 @@
+@startuml LogičniPogled
+skinparam backgroundcolor white
+skinparam defaultTextAlignment center
+skinparam usecase {
+  backgroundColor white
+  borderColor #5FB8EC
+  arrowColor black
+}
+skinparam actorBorderColor black
+skinparam actorBackgroundColor white
+skinparam Linetype ortho
+skinparam actorStyle awesome
+
+'top to bottom direction
+
+skinparam defaultTextAlignment center
+
+'actor "Zunanji sistem" as ZA
+'actor "Uporabnik" as U
+'actor "Google maps API" as GMA
+
+card Modeli as mod{
+    rectangle "Uporabnik" as UP
+    rectangle "Novica" as O
+    rectangle "Predlog" as P
+    rectangle "Komentar" as S
+}
+card Krmilniki as krm{
+    rectangle "Krmilnik uporabnika " as K1
+    rectangle "Krmilnik novice" as K2
+    rectangle "Krmilnik predloga" as K3
+    rectangle "Krmilnik komentarja" as K4
+    rectangle "Krmilnik upravljanja računov"
+    rectangle "Krmilnik lokacije" as K5
+
+}
+
+card Pogledi{
+    folder Administrator as adm {
+        rectangle "Seznam uporanikov" as r1
+    }
+    folder "Uporabnik/anonimni uporabnik" as spreh {
+        rectangle "Dodajanje predloga" as r3
+        rectangle "Predogled predloga" as r12
+        rectangle "Arhiv" as r4
+        rectangle "Predlog" as r5
+        rectangle "Stran s predlogi" as r6
+        rectangle "Novica" as r7
+        rectangle "Stran s prijavo/registracijo" as r8
+        rectangle "Začetna stran" as r9
+    }
+    folder "Predstavnik Občine" as klic {
+        rectangle "Dodajanje novice" as r10
+        rectangle "Predogled novice" as r312
+
+    }
+}
+
+mod -> krm
+krm -> mod
+
+krm ----right---> Pogledi
+Pogledi ----right---> krm
+
+actor "Google maps API" as GMA
+actor "Zunanji sistem" as ZA
+actor "Uporabnik" as U
+
+U <-> Pogledi
+GMA <-up--> K5
+
+ZA <-up-> mod
+'krm -up-> ZA

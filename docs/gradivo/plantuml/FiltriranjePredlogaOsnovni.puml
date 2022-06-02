@@ -1,0 +1,49 @@
+@startuml FIltriranjePredlogaOsnovni
+
+hide footbox
+
+skinparam backgroundcolor white
+skinparam defaultTextAlignment center
+skinparam actorBorderColor black
+skinparam actorBackgroundColor white
+skinparam arrowColor black  
+skinparam sequenceLifeLineBorderColor #5FB8EC
+skinparam sequenceParticipantBorderColor #5FB8EC
+skinparam sequenceParticipantBackgroundColor white
+
+title "Filtriranje predloga - osnovni tok"
+
+actor "Prijavljen uporabnik" AS U <<actor>>
+
+participant "Predlogi" as Predlogi <<view>>
+participant "Krmilnik upravljanja predlogov" as Krmilnik <<controller>>
+participant "Predlog" as  Predlog <<model>>
+
+
+U -> Predlogi: prikaziStranSPredlogi()
+activate Predlogi
+
+Predlogi -> Krmilnik: vrniPredloge()
+activate Krmilnik
+
+Krmilnik -> Predlog: vrniPredloge()
+activate Predlog
+
+Predlog -[dotted]> Krmilnik: seznamPredlogov
+deactivate Predlog
+
+Krmilnik -[dotted]> Predlogi: seznamPredlogov
+
+loop filtriranje
+  U -> Predlogi: vnosFiltrirnihOmejitev()
+  Predlogi -> Krmilnik: filtriranjePoOmejitvah()
+  Krmilnik -> Krmilnik: filtriranjePredlogov()
+  Krmilnik -[dotted]> Predlogi: seznamPredlogov
+  deactivate Krmilnik
+  Predlogi -> Predlogi: posodobiStran()
+end
+
+
+
+
+@enduml

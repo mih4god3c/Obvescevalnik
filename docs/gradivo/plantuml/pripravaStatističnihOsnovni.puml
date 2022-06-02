@@ -1,0 +1,44 @@
+@startuml Statistika
+skinparam backgroundcolor white
+skinparam defaultTextAlignment center
+skinparam arrowColor black
+skinparam state {
+  BackgroundColor white
+  BorderColor #5FB8EC
+  StartColor #5FB8EC
+  EndColor #5FB8EC
+}
+title = "Priprava statističnih podatkov - osnovni tok"
+
+state "Mirovanje aplikacije" as S1
+S1: do: interakcija z aplikacijo
+
+state "Piprava statističnih podatkov" as S2
+S2: do: zunanji sistem posodobi statistične podatke
+
+state "Posodobljena aplikacija" as S3
+S3: do: posodobitev statistike za občino in celotno aplikacijo
+
+
+
+[*] -> S1
+S2 -down-> S3
+S3 --> S1
+
+S1 --> S2: všečkanje predloga
+S1 --> S2: ne-všečkanje predloga
+S1 --> S2: komentiranje predloga
+S1 --> S2: urejanje predloga
+S1 --> S2: arhiviranje predloga
+S1 --> S2: brisanje predloga
+
+' S1 --> S3: akcija 4
+' S3 --> S2: akcija 6
+' S2 --> S3: akcija 7
+' S3 --> S3: akcija 8
+' S3 --> S4: akcija 9
+' S4 -> S1: akcija 10
+
+' S4 -> [*]
+
+@enduml

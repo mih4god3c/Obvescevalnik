@@ -1,0 +1,48 @@
+@startuml ModeratorOsnovni
+
+hide footbox
+
+skinparam backgroundcolor white
+skinparam defaultTextAlignment center
+skinparam actorBorderColor black
+skinparam actorBackgroundColor white
+skinparam arrowColor black  
+skinparam sequenceLifeLineBorderColor #5FB8EC
+skinparam sequenceParticipantBorderColor #5FB8EC
+skinparam sequenceParticipantBackgroundColor white
+
+title "Dodajanje moderatorja - osnovni tok"
+
+actor "Administrator" AS U1 <<actor>>
+
+participant "Seznam uporabnikov" as R5 <<view>>
+participant "Krmilnik upravljanja računov" as R2 <<controller>>
+participant "Uporabnik" as R4 <<model>>
+
+
+activate R5
+U1 -> R5: pricniDodajanje()
+R5 -> R2: vrniUporabnike()
+activate R2
+R2 -> R4: vrniUporabnike()
+activate R4
+R4 -[dotted]> R2: seznamUporabnikov
+R2 -[dotted]> R5: seznamUporabnikov
+deactivate R4
+
+
+U1 -> R5: izbiraUporabnika()
+'R5 -> R5: izbiraUporabnika()
+R5 -> R5: dodeliModeratorskePravice()
+R5 -> R2: posodobiUporabnika()
+R2 -> R4: posodobiUporabnika()
+activate R4
+
+R4 -[dotted]> R2: potrdilo
+deactivate R4
+
+
+R2 -[dotted]> R5: potrdilo
+R5 -> R5: obvestiloUspesnoDodajanje()
+
+@enduml

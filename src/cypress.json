@@ -1,0 +1,13 @@
+{
+  "projectId": "7j6qxm",
+  "reporter": "mochawesome",
+  "reporterOptions": {
+    "reportFilename": "[status]_[datetime]-[name]-report",
+    "reportDir": "./cypress/reports"
+  },
+  "defaultCommandTimeout": 10000,
+  "video": false,
+  "embeddedScreenshots": true,
+  "inlineAssets": true,
+  "charts": true
+}

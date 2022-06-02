@@ -1,0 +1,211 @@
+@startuml
+class Uporabnik #ffecb3 {
+int idUporabnika 
+String uporabniskoIme 
+String ime
+String priimek 
+String email 
+int tip 
+int datum 
+String hashGeslo 
+String saltGeslo 
+dodajUporabnika()
+preveriUnikatnostUporabniskegaImena()
+vrniPodatkeUporabnika()
+vrniUporabnike()
+posodobiUporabnika()
+}
+
+class Predlog #ffecb3 {
+int idPredloga
+String naslovPredloga
+int ocena
+int idUporabnika
+String opis
+[]String Slike
+String ključ
+[]float lokacija
+int datum
+dodajPredlog()
+vrniPredlog()
+vrniPredloge()
+posodobiPredlog()
+}
+
+class Novica #ffecb3 {
+int idNovice
+String naslov
+String opis
+[]String Slike
+int datum
+dodajNovico()
+vrniPredloge()
+}
+
+class KrmilnikUpravljanjaRacunov #c8e6c9 {
+ustvariRacun()
+poljaIzpolnjena()
+preveriUstreznostGesla()
+preveriUstreznostPonovljenegaGesla()
+prijaviUporanika()
+poljaPrijavaIzpolnjena()
+preveriBlokiranost()
+preveriPodatkePrijava()
+nastaviSejo()
+preveriAvtorizacijo()
+odjaviUporabnika()
+koncajUporabniskoSejo()
+vrniUporabnike()
+posodobiUporabnika()
+}
+
+class KrmilnikUpravljanjaPredlogov #c8e6c9 {
+vrniPredloge()
+vrniPredlog()
+prikaziStranZaDodajanjePredloga()
+preveriVeljavnostVnosa()
+prikaziPredogledPredloga()
+objaviPredlog()
+posodobiPredlog()
+prikaziStranZaUrejanjePredloga()
+prikaziStranZaDodajanjeNovice()
+prikaziPredogledNovice()
+objaviNovico()
+iskanjePoNizu()
+filtriranjePoOmejitvah()
+filtriranjePredlogov()
+prikaziStranPredloga()
+}
+
+class KrmilnikLokacije #c8e6c9 {
+pridobiZemljevid()
+pridobiLokacijo()
+}
+
+interface ZM_Registracija #b3e5fc {
+pricniRegistracijo()
+izpolniObrazec()
+potrdiPogojeUporabe()
+potrdiRegistracijo()
+prikaziObrazecRegistracija()
+obvestiloNeustreznaRegistracija()
+obvestiloNeustreznoUporabniskoIme()
+obvestiloNeustreznoGeslo()
+obvestiloNeizpolnjenaPolja()
+}
+
+interface ZM_Prijava #b3e5fc {
+pricniPrijavo()
+izpolniObrazec()
+potrdiPrijavo()
+prikaziStranSPredlogi()
+prikaziObrazecPrijava()
+prikaziObvestiloNeveljavnoUporabniskoIme()
+prikaziObvestiloNeveljavnoGeslo()
+}
+
+interface ZM_Odjava #b3e5fc {
+pricniOdjavo()
+prikaziZacetnoStran()
+}
+
+interface ZM_Arhiv #b3e5fc {
+pricniPregled()
+izberiPredlog()
+}
+
+interface ZM_DodajanjeNovice #b3e5fc {
+izpolniPolja()
+dodajSlike()
+izberiLokacijoNaZemljevidu()
+nadaljuj()
+}
+
+interface ZM_Novica #b3e5fc {
+uredi()
+objavi()
+prikaziSporocilo()
+}
+
+interface ZM_SeznamUporabnikov #b3e5fc {
+pricniDodajanje()
+dodajanjeModeratorskihPravic()
+izbiraUporabnika()
+potrditev()
+pricniOdstranjevanje()
+odvzemModeratorskihPravic() :
+pricniOnemogočanje()
+onemogačanjeUporabnika()
+omogočanjeUporabnika()
+}
+
+interface ZM_Predlog #b3e5fc {
+izberiObjavljalca()
+prikaziPredlog()
+uredi()
+objavi()
+prikaziSporocilo()
+pregledPredloga()
+arhiviranjePredloga()
+potrditevArhiviranje()
+brisanjePredloga()
+potrditevBrisanja()
+vpisiRazlog()
+obvestiloUspesnoBrisanje()
+urediPredlog()
+dodajNovico()
+vseckanjePredloga()
+neVseckanjePredloga()
+vnosOcene()
+posodobiStran()
+prikaziSporocilo()
+vnosKomentarja()
+klikNaGumbKomentiraj()
+}
+
+interface ZM_Predlogi #b3e5fc {
+prikaziStranSPredlogi()
+izberiPredlog()
+dodajanjePredloga()
+pricniArhiviranje()
+pricniBrisanje()
+klikNaPredlog()
+vnosIskalnegaNiza()
+prikaziArhiv()
+vnosOcenePriPredlogu()
+posodobiStran()
+prikaziSporocilo()
+vnosFiltrirnihOmejitev()
+posodobitevStrani()
+}
+
+interface ZM_DodajanjePredloga #b3e5fc {
+izpolniPolja()
+dodajSlike()
+izberiLokacijoNaZemljevidu()
+nadaljuj()
+}
+
+
+Uporabnik "1..1"--"0..*"Predlog
+Predlog "1..1"--"0..*" Novica
+ZM_Registracija "1..1"-->"1..1" KrmilnikUpravljanjaRacunov
+ZM_Prijava "1..1"-->"1..1" KrmilnikUpravljanjaRacunov
+ZM_Odjava "1..1"-->"1..1" KrmilnikUpravljanjaRacunov
+ZM_SeznamUporabnikov "1..1"-->"1..1" KrmilnikUpravljanjaRacunov
+KrmilnikUpravljanjaRacunov "0..*"-->"0..1" Uporabnik
+ZM_Predlog "1..1"-->"1..1" KrmilnikUpravljanjaRacunov
+ZM_Predlog "1..1"-->"1..1" KrmilnikUpravljanjaPredlogov
+ZM_Predlogi "1.."-->"1..1" KrmilnikUpravljanjaPredlogov
+KrmilnikUpravljanjaPredlogov "0..*"-->"0..1" Predlog
+ZM_DodajanjePredloga "1..1"-->"1..1" KrmilnikLokacije
+ZM_DodajanjePredloga "1..1"-->"1..1" KrmilnikUpravljanjaPredlogov
+ZM_Arhiv "1..1"-->"1..1" KrmilnikUpravljanjaPredlogov
+ZM_Arhiv "1..1"-->"1..1" ZM_Predlog
+ZM_DodajanjeNovice "1..1"-->"1..1" KrmilnikLokacije
+ZM_DodajanjeNovice "1..1"-->"1..1" KrmilnikUpravljanjaPredlogov
+ZM_Novica "1..1"-->"1..1" KrmilnikUpravljanjaPredlogov
+ZM_Novica "1..1"-->"1..1" ZM_Predlogi
+
+
+@enduml

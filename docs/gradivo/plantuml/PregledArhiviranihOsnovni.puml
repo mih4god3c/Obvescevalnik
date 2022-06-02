@@ -1,0 +1,45 @@
+@startuml PregledArh
+
+hide footbox
+
+skinparam backgroundcolor white
+skinparam defaultTextAlignment center
+skinparam actorBorderColor black
+skinparam actorBackgroundColor white
+skinparam arrowColor black  
+skinparam sequenceLifeLineBorderColor #5FB8EC
+skinparam sequenceParticipantBorderColor #5FB8EC
+skinparam sequenceParticipantBackgroundColor white
+
+title "Pregled arhiviranih predlogov - osnovni tok"
+
+actor "Uporabnik" AS U1 <<actor>>
+
+participant "Arhiv" as R5 <<view>>
+participant "Predlog" as R4 <<view>>
+participant "Krmilnik upravljanja predlogov" as R2 <<controller>>
+participant "Predlog" as R3 <<model>>
+
+
+activate R5
+U1 -> R5: pricniPregled()
+R5 -> R2: vrniPredloge()
+activate R2
+R2 -> R3: vrniPredloge()
+activate R3
+R3 -[dotted]> R2: seznamPredlogov
+deactivate R3
+R2 -[dotted]> R5: seznamPredlogov
+U1 -> R5: izberiPredlog()
+
+R5 -> R2: vrniPredlog()
+R2 -> R3: vrniPredlog()
+activate R3
+R3 -[dotted]> R2: predlog
+R2 -[dotted]> R5: predlog
+
+R5 -> R4: prikaziPredlog()
+activate R4
+'R4 -> R4: pregledPredloga()
+
+@enduml

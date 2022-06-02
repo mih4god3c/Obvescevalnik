@@ -1,0 +1,73 @@
+@startuml OcenjevanjeArhiviranegaPredlogaOsnovni
+
+hide footbox
+
+skinparam backgroundcolor white
+skinparam defaultTextAlignment center
+skinparam actorBorderColor black
+skinparam actorBackgroundColor white
+skinparam arrowColor black  
+skinparam sequenceLifeLineBorderColor #5FB8EC
+skinparam sequenceParticipantBorderColor #5FB8EC
+skinparam sequenceParticipantBackgroundColor white
+
+title "Ocenjevanje arhiviranega predloga - osnovni tok"
+
+actor "Prijavljen uporabnik" AS U <<actor>>
+
+participant "Predlogi" as Predlogi <<view>>
+participant "Predlog" as Predlog <<view>>
+participant "Krmilnik upravljanja predlogov" as Krmilnik <<controller>>
+participant "Predlog" as  PredlogModel <<model>>
+
+
+U -> Predlogi: prikaziArhiv()
+activate Predlogi
+
+Predlogi -> Krmilnik: vrniPredloge()
+activate Krmilnik
+
+Krmilnik -> PredlogModel: vrniPredloge()
+activate PredlogModel
+
+PredlogModel -[dotted]> Krmilnik: seznamPredlogov
+deactivate PredlogModel
+
+Krmilnik -[dotted]> Predlogi: seznamPredlogov
+deactivate Krmilnik
+
+U -> Predlogi: izberiPredlog()
+
+
+Predlogi -> Krmilnik: vrniPredlog()
+activate Krmilnik
+
+Krmilnik -> PredlogModel: vrniPredlog()
+activate PredlogModel
+PredlogModel -[dotted]> Krmilnik: predlog
+deactivate PredlogModel
+
+
+Krmilnik -[dotted]> Predlogi: predlog
+deactivate Krmilnik
+Predlogi -> Predlog: prikaziPredlog()
+
+deactivate Krmilnik
+activate Predlog
+deactivate Predlogi
+
+U -> Predlog: vnos ocene
+Predlog -> Krmilnik: posodobiPredlog()
+activate Krmilnik
+Krmilnik -> PredlogModel: posodobiPredlog()
+activate PredlogModel
+PredlogModel -[dotted]> Krmilnik: posodobljenPredlog
+deactivate PredlogModel
+Krmilnik -[dotted]> Predlog: posodobljenPredlog
+deactivate Krmilnik
+
+Predlog -> Predlog: posodobiStran()
+Predlog -> Predlog: prikaziSporocilo()
+
+
+@enduml

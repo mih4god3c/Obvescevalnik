@@ -1,0 +1,71 @@
+@startuml PrijavaAlt1
+
+hide footbox
+
+skinparam backgroundcolor white
+skinparam defaultTextAlignment center
+skinparam actorBorderColor black
+skinparam actorBackgroundColor white
+skinparam arrowColor black  
+skinparam sequenceLifeLineBorderColor #5FB8EC
+skinparam sequenceParticipantBorderColor #5FB8EC
+skinparam sequenceParticipantBackgroundColor white
+
+title "Prijava - alternativni tok"
+
+actor "Neprijavljen uporabnik" AS U1 <<actor>>
+
+participant "Prijava" as R5 <<view>>
+participant "Krmilnik upravljanja računov" as R2 <<controller>>
+participant "Uporabnik" as R4 <<model>>
+
+activate R5
+
+
+note left of R5: Poskus dostopa do funkcionalnosti, ki ni na voljo \n neprijavljenemu uporabniku
+
+activate R2
+R2 -> R2: preveriAvtorizacijo()
+
+
+R2 -> R5: neprijavljenDostop()
+deactivate R2
+
+
+R5 -> R5: prikaziObrazecPrijava()
+
+U1 -> R5: izpolniObrazec()
+U1 -> R5: potrdiPrijavo()
+
+activate R2
+
+R5 -> R2: prijaviUporabnika()
+R2 -> R2: poljaPrijavaIzpolnjena()
+
+activate R4
+
+R2 -> R4: vrniPodatkeUporabnika()
+R4 -[dotted]> R2: podatkiUporabnika
+
+deactivate R4
+
+R2 -> R2: preveriBlokiranost()
+R2 -> R2: preveriPodatkePrijava()
+R2 -> R2: nastaviSejo()
+
+
+R2 -[dotted]> R5: prijavaUspesna
+deactivate R2
+'R5 -> R2: vrniPodatkeUporabnika()
+
+'activate R4
+'R2 -> R4: vrniPodatkeUporabnika()
+'R4 -[dotted]> R2: podatkiUporabnika
+'R2 -[dotted]> R5: podatkiUporabnika
+'deactivate R4
+
+
+R5 -> R5: prikaziStranSPredlogi()
+
+
+@enduml

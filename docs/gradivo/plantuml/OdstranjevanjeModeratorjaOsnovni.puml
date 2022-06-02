@@ -1,0 +1,72 @@
+@startuml ModeratorOsnovni
+
+hide footbox
+
+skinparam backgroundcolor white
+skinparam defaultTextAlignment center
+skinparam actorBorderColor black
+skinparam actorBackgroundColor white
+skinparam arrowColor black  
+skinparam sequenceLifeLineBorderColor #5FB8EC
+skinparam sequenceParticipantBorderColor #5FB8EC
+skinparam sequenceParticipantBackgroundColor white
+
+title "Odstranjevanje moderatorja - osnovni tok"
+
+actor "Administrator" AS U1 <<actor>>
+
+participant "Seznam uporabnikov" as R5 <<view>>
+participant "Krmilnik upravljanja računov" as R2 <<controller>>
+participant "Uporabnik" as R4 <<model>>
+'participant "Predlog" as R3 <<model>>
+
+
+activate R5
+U1 -> R5: pricniOdstranjevanje()
+R5 -> R2: vrniUporabnike()
+activate R2
+R2 -> R4: vrniUporabnike()
+activate R4
+R4 -[dotted]> R2: seznamUporabnikov
+R2 -[dotted]> R5: seznamUporabnikov
+deactivate R4
+
+
+
+
+
+
+'R5 -> R5: prikaziObrazecDodajanjeModeratorja()
+U1 -> R5: izbiraUporabnika()
+R5 -> R5: odvzemModeratorskihPravic()
+'R5 -> R5: potrditev()
+R5 -> R2: posodobiUporabnika()
+R2 -> R4: posodobiUporabnika()
+activate R4
+' activate R2
+
+' R5 -> R2: ustvariRacunModeratorja()
+
+' R2 -> R2: poljaIzpolnjena()
+
+' activate R4
+' R2 -> R4: preveriUnikatnostUporabniskegaImena()
+' R4 -[dotted]> R2: jeUnikatno()
+' R2 -> R4: dodajUporabnika()
+' R4 -[dotted]> R2: potrdilo()
+' deactivate R4
+
+
+' R2 -[dotted]> R5: Potrdilo()
+' R5 -> R5: obvestiloUspesnoDodajanje()
+'R2 -> R4: preveriUnikatnostUporabniskegaImena()
+'R4 -[dotted]> R2: jeUnikatno
+'R2 -> R4: dodajUporabnika()
+R4 -[dotted]> R2: potrdilo
+deactivate R4
+
+
+R2 -[dotted]> R5: potrdilo
+R5 -> R5: obvestiloUspesnoOdstranjevanje()
+
+@enduml

@@ -1,0 +1,101 @@
+@startuml ModeratorAlt
+
+hide footbox
+
+skinparam backgroundcolor white
+skinparam defaultTextAlignment center
+skinparam actorBorderColor black
+skinparam actorBackgroundColor white
+skinparam arrowColor black  
+skinparam sequenceLifeLineBorderColor #5FB8EC
+skinparam sequenceParticipantBorderColor #5FB8EC
+skinparam sequenceParticipantBackgroundColor white
+
+title "Odstranjevanje moderatorja - alternativni tok"
+
+actor "Administrator" AS U1 <<actor>>
+
+participant "Predlog" as R7 <<view>>
+participant "Seznam uporabnikov" as R8 <<view>>
+participant "Predlogi" as R5 <<view>>
+participant "Krmilnik upravljanja predlogov" as R2 <<controller>>
+participant "Krmilnik upravljanja računov" as R9 <<controller>>
+
+participant "Predlog" as R6 <<model>>
+participant "Uporabnik" as R4 <<model>>
+
+'
+
+U1 -> R5: prikaziStranSPredlogi()
+activate R5
+R5 -> R2: vrniPredloge()
+activate R2
+R2 -> R6: vrniPredloge()
+activate R6
+R6 -[dotted]> R2: seznamPredlogov
+R2 -[dotted]> R5: seznamPredlogov
+deactivate R6
+U1 -> R5: izberiPredlog()
+R5 -> R2: vrniPredlog()
+activate R6
+R2 -> R6: vrniPredloge()
+R6 -[dotted]> R2: izbraniPredlog
+deactivate R6
+R2 -[dotted]> R5: izbraniPredlog
+R5 -> R7: prikaziPredlog()
+deactivate R2
+deactivate R5
+activate R7
+U1 -> R7: izberiObjavljalca()
+
+R7 -> R9: vrniUporabnike()
+activate R9
+R9 -> R4: vrniUporabnike()
+activate R4
+R4 -[dotted]> R9: seznamUporabnikov
+R9 -[dotted]> R8: seznamUporabnikov
+
+activate R8
+
+deactivate R7
+U1 -> R8: izbiraUporabnika()
+R8 -> R8: odvzemModeratorskihPravic()
+'R8 -> R8: potrditev()
+
+R8 -> R9: posodobiUporabnika()
+R9 -> R4: posodobiUporabnika()
+
+R4 -[dotted]> R9: potrdilo
+R9 -[dotted]> R8: potrdilo
+
+R8 -> R8: obvestiloUspesnoOdstranjevanje()
+
+
+
+
+
+
+
+
+'R5 -> R5: prikaziPredloge()
+'U1 -> R5: izpolniObrazec()
+'U1 -> R5: potrdi()
+
+'activate R2
+
+'R5 -> R2: ustvariRacunModeratorja()
+
+'R2 -> R2: poljaIzpolnjena()
+
+'activate R4
+'R2 -> R4: preveriUnikatnostUporabniskegaImena()
+'R4 -[dotted]> R2: jeUnikatno()
+'R2 -> R4: dodajUporabnika()
+'R4 -[dotted]> R2: potrdilo()
+'deactivate R4
+
+
+'R2 -[dotted]> R5: Potrdilo()
+'R5 -> R5: obvestiloUspesnoDodajanje()
+
+@enduml

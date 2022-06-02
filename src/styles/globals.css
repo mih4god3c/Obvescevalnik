@@ -1,0 +1,8 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+input[type=file]::-webkit-file-upload-button,
+input[type=file]::file-selector-button {
+    @apply text-white border-0 bg-gray-500 hover:bg-gray-800 rounded-xl px-4 py-2 mr-6 text-center cursor-pointer;
+}

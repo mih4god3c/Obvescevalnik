@@ -1,0 +1,84 @@
+@startuml Brisanje
+
+hide footbox
+
+skinparam backgroundcolor white
+skinparam defaultTextAlignment center
+skinparam actorBorderColor black
+skinparam actorBackgroundColor white
+skinparam arrowColor black  
+skinparam sequenceLifeLineBorderColor #5FB8EC
+skinparam sequenceParticipantBorderColor #5FB8EC
+skinparam sequenceParticipantBackgroundColor white
+
+title "Všečkanje/ne-všečkanje predloga - osnovni tok"
+
+actor "Uporabnik" AS U1 <<actor>>
+
+participant "Predlogi" as R4 <<view>>
+participant "Predlog" as R5 <<view>>
+participant "Krmilnik upravljanja predlogov" as R2 <<controller>>
+participant "Predlog" as R3 <<model>>
+
+
+
+U1 -> R4: prikaziStranSPredlogi()
+activate R4
+
+R4 -> R2: vrniPredloge()
+activate R2
+R2 -> R3: vrniPredloge()
+activate R3
+R3 -[dotted]> R2: seznamPredlogov
+deactivate R3
+R2 -[dotted]> R4: seznamPredlogov
+deactivate R2
+
+
+U1 -> R4: izberiPredlog()
+
+R4 -> R2: vrniPredlog()
+activate R2
+R2 -> R3: vrniPredlog()
+activate R3
+R3 -[dotted]> R2: predlog
+deactivate R3
+R2 -[dotted]> R4: predlog
+deactivate R2
+
+'R4 -> R5: prikaziPredlog()
+
+
+
+R4 -> R5: prikaziPredlog()
+deactivate R4
+activate R5
+U1 -> R5: vseckanjePredloga()
+U1 -> R5: neVseckanjePredloga()
+
+
+R5 -> R2: posodobiPredlog()
+activate R2
+R2 -> R3: posodobiPredlog()
+activate R3
+R3 -[dotted]> R2: potrdilo
+deactivate R3
+R2 -[dotted]> R5: potrdilo
+
+deactivate R2
+
+' R5 -> R2: vrniPredloge()
+' activate R2
+' R2 -> R3: vrniPredloge()
+' activate R3
+' R3 -[dotted]> R2: seznamPredlogov
+' deactivate R3
+' R2 -[dotted]> R5: seznamPredlogov
+' U1 -> R5: izberiPredlog()
+
+
+' R5 -> R4: prikaziPredlog()
+' activate R4
+' R4 -> R4: pregledPredloga()
+
+@enduml

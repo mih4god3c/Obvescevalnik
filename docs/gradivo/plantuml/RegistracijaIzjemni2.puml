@@ -1,0 +1,49 @@
+@startuml RegIzjemni2
+
+hide footbox
+
+skinparam backgroundcolor white
+skinparam defaultTextAlignment center
+skinparam actorBorderColor black
+skinparam actorBackgroundColor white
+skinparam arrowColor black  
+skinparam sequenceLifeLineBorderColor #5FB8EC
+skinparam sequenceParticipantBorderColor #5FB8EC
+skinparam sequenceParticipantBackgroundColor white
+
+title "Registracija - izjemi tok 2"
+
+actor "Neprijavljen uporabnik" AS U1 <<actor>>
+
+participant "Registracija" as R5 <<view>>
+participant "Krmilnik upravljanja računov" as R2 <<controller>>
+participant "Uporabnik" as R4 <<model>>
+
+'activate U1
+activate R5
+
+U1 -> R5: pricniRegistracijo()
+U1 -> R5: izpolniObrazec()
+U1 -> R5: potrdiPogojeUporabe()
+U1 -> R5: potrdiRegistracijo()
+
+activate R2
+
+
+'R5 -> R5: prikaziObrazecRegistracija()
+R5 -> R2: ustvariRacun()
+
+R2 -> R2: poljaIzpolnjena()
+R2 -> R2: preveriUstreznostGesla()
+R2 -> R2: preveriUstreznostPonovljenegaGesla()
+R2 -[dotted]> R5: neustreznoGeslo
+activate R4
+R2 -> R4: preveriUnikatnostUporabniskegaImena()
+R4 -[dotted]> R2: jeUnikatno
+deactivate R2
+deactivate R4
+
+R5 -> R5: obvestiloNeustreznoGeslo()
+
+
+@enduml

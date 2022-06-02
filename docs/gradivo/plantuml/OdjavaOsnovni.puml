@@ -1,0 +1,47 @@
+@startuml PrijavaOsnovni
+
+hide footbox
+
+skinparam backgroundcolor white
+skinparam defaultTextAlignment center
+skinparam actorBorderColor black
+skinparam actorBackgroundColor white
+skinparam arrowColor black  
+skinparam sequenceLifeLineBorderColor #5FB8EC
+skinparam sequenceParticipantBorderColor #5FB8EC
+skinparam sequenceParticipantBackgroundColor white
+
+title "Odjava - osnovni tok"
+
+actor "Prijavljen uporabnik" AS U1 <<actor>>
+
+participant "Odjava" as R5 <<view>>
+participant "Krmilnik upravljanja računov" as R2 <<controller>>
+'participant "Uporabnik" as R4 <<model>>
+
+'activate U1
+activate R5
+
+'R2 -> R5: neprijavljenDostop()
+
+
+U1 -> R5: pricniOdjavo()
+
+
+activate R2
+
+R5 -> R2: odjaviUporabnika()
+R2 -> R2: koncajUporabniskoSejo()
+R2 -[dotted]> R5: odjavaUspesna
+
+' R5 -> R2: vrniPodatkeUporabnika()
+' activate R4
+' R2 -> R4: vrniPodatkeUporabnika()
+' R4 -[dotted]> R2: podatkiUporabnika()
+' R2 -[dotted]> R5: podatkiUporabnika()
+' deactivate R4
+
+R5 -> R5: prikaziZacetnoStran()
+
+
+@enduml

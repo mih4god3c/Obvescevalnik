@@ -1,0 +1,43 @@
+@startuml FizicniPogled
+
+skinparam backgroundcolor transparent
+skinparam defaultTextAlignment center
+skinparam usecase {
+  backgroundColor white
+  borderColor #5FB8EC
+  arrowColor black
+}
+skinparam actorBorderColor black
+skinparam actorBackgroundColor white
+skinparam Linetype orto
+skinparam actorStyle awesome
+skinparam backgroundcolor transparent
+skinparam defaultTextAlignment center
+
+skinparam ArrowColor black
+skinparam artifact {
+  backgroundcolor #e8f5fd
+  bordercolor #5FB8EC
+}
+skinparam node {
+  bordercolor #5FB8EC
+}
+
+left to right direction
+
+node "Odjemalski\nračunalnik" as Odjemalec <<device>> {
+  node "Spletni\nbrskalnik" as Brskalnik <<device>> {
+    artifact "HTML5\nvideo\npredvajalnik" as Predvajalnik <<artifact>>
+  }
+}
+node "Podatkovna\nbaza" as PB <<device>> {
+  artifact "Relacijska\npodatkovna\nbaza" AS RelPB <<artifact>>
+  artifact "Modul\nposlovne\ninteligence" AS BI <<artifact>>
+}
+node "Spletni\nstrežnik" as SpletniStreznik <<device>> {
+  artifact "index.hbs" as Index <<artifact>>
+}
+
+SpletniStreznik -up- PB : vrata 1433
+SpletniStreznik -down- Odjemalec : vrata 80
+@enduml

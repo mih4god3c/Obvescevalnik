@@ -1,0 +1,125 @@
+@startuml DodajanjeNovicOsnovni
+
+hide footbox
+
+skinparam backgroundcolor white
+skinparam defaultTextAlignment center
+skinparam actorBorderColor black
+skinparam actorBackgroundColor white
+skinparam arrowColor black  
+skinparam sequenceLifeLineBorderColor #5FB8EC
+skinparam sequenceParticipantBorderColor #5FB8EC
+skinparam sequenceParticipantBackgroundColor white
+
+title "Dodajanje novic - osnovni tok"
+
+actor "Predstavnik občine" AS U <<actor>>
+
+participant "Predlogi" as Predlogi <<view>>
+participant "Dodajanje novice" as Dodajanje <<view>>
+participant "Predlog" as Predlog <<view>>
+participant "Novica" as Novica <<view>>
+participant "Krmilnik upravljanja predlogov" as Krmilnik <<controller>>
+participant "Krmilnik lokacije" as KrmilnikL <<controller>>
+participant "Predlog" as  PredlogModel <<model>>
+participant "Novica" as  NovicaModel <<model>>
+
+U -> Predlogi: prikaziStranSPredlogi()
+activate Predlogi
+
+Predlogi -> Krmilnik: vrniPredloge()
+activate Krmilnik
+
+Krmilnik -> PredlogModel: vrniPredloge()
+activate PredlogModel
+
+PredlogModel -[dotted]> Krmilnik: seznamPredlogov
+deactivate PredlogModel
+
+Krmilnik -[dotted]> Predlogi: seznamPredlogov
+deactivate Krmilnik
+
+
+U -> Predlogi: izberiPredlog()
+
+
+Predlogi -> Krmilnik: vrniPredlog()
+activate Krmilnik
+
+Krmilnik -> PredlogModel: vrniPredlog()
+activate PredlogModel
+PredlogModel -[dotted]> Krmilnik: predlog
+deactivate PredlogModel
+
+
+Krmilnik -[dotted]> Predlogi: predlog
+deactivate Krmilnik
+Predlogi->Predlog: prikaziPredlog()
+deactivate Krmilnik
+activate Predlog
+deactivate Predlogi
+
+U -> Predlog: dodajNovico()
+Predlog -> Krmilnik: prikaziStranZaDodajanjeNovice()
+activate Krmilnik
+Krmilnik -[dotted]> Dodajanje: stranZaDodajanjeNovice
+deactivate Krmilnik
+deactivate Predlog
+activate Dodajanje
+
+
+Dodajanje -> KrmilnikL: pridobiZemljevid()
+activate KrmilnikL
+KrmilnikL -[dotted]> Dodajanje: zemljevid
+deactivate KrmilnikL
+
+loop urejanje novice
+  U -> Dodajanje: izpolniPolja()
+  U -> Dodajanje: dodajSlike()
+  U -> Dodajanje: izberiLokacijoNaZemljevidu()
+
+  Dodajanje -> KrmilnikL: pridobiLokacijo()
+  activate KrmilnikL
+  KrmilnikL -[dotted]> Dodajanje: lokacija
+  deactivate KrmilnikL
+
+  U -> Dodajanje: nadaljuj()
+
+  Dodajanje -> Krmilnik: preveriVeljavnostVnosa()
+  activate Krmilnik
+
+  Krmilnik -[dotted]> Dodajanje: podatkiSoVeljavni
+  deactivate Krmilnik
+
+  Dodajanje -> Krmilnik: prikaziPredogledNovice()
+  activate Krmilnik
+  deactivate Dodajanje
+
+  Krmilnik -[dotted]> Novica: predogledNovice
+  activate Novica
+  U -> Novica: uredi()
+end
+
+U -> Novica: objavi()
+Novica -> Krmilnik: objaviNovico()
+Krmilnik -> NovicaModel: dodajNovico()
+activate NovicaModel
+NovicaModel -[dotted]> Krmilnik: novicaDodana
+deactivate NovicaModel
+Krmilnik -[dotted]> Novica: novicaDodana
+Novica -> Novica: prikaziSporocilo()
+
+Novica -> Krmilnik: vrniPredloge()
+Krmilnik -> NovicaModel: vrniPredloge()
+activate NovicaModel
+NovicaModel -[dotted]> Krmilnik: seznamPredlogov
+deactivate NovicaModel
+Krmilnik -[dotted]> Novica: seznamPredlogov
+Novica -> Predlogi: prikaziStranSPredlogi()
+deactivate Novica
+deactivate Krmilnik
+
+activate Predlogi
+
+
+@enduml
